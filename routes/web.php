@@ -1,6 +1,8 @@
 <?php
 
+use App\Services\CsvImport\CsvGeneratorService;
 use Illuminate\Support\Facades\Route;
+use App\Models\Student;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,4 +17,11 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+Route::get('/export-csv', function () {
+    Student::query()
+    ->join('departments', 'departments.id', 'students.department_id')
+    ->join('departments', 'departments.id', 'students.department_id')
+    $csvService = (new CsvGeneratorService())->insertColumns();
 });
