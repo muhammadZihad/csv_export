@@ -20,8 +20,8 @@ Route::get('/', function () {
 });
 
 Route::get('/export-csv', function () {
-    Student::query()
-    ->join('departments', 'departments.id', 'students.department_id')
-    ->join('departments', 'departments.id', 'students.department_id')
-    $csvService = (new CsvGeneratorService())->insertColumns();
+    $students = Student::query()
+        ->join('departments', 'departments.id', 'students.department_id')
+        ->join('departments', 'departments.id', 'students.department_id')->get();
+    $csvService = (new CsvGeneratorService())->insertColumns($students);
 });
